@@ -17,7 +17,11 @@ import threading
 # -- GLOBAL VARIABLES -- #
 my_ip = {}
 mb_server = {}
+mb_server['ip'] = '127.0.0.1'
+mb_server['port'] = 502
 mb_client = {}
+mb_client['ip'] = '127.0.0.1'
+mb_client['port'] = 502
 # -- FUNCTION OPTIONS -- #
 func_options = {
     'arp_mode': ['Ettercap', 'Scapy_Arpspoof'],
