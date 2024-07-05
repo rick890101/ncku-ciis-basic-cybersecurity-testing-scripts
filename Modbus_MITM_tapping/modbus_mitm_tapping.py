@@ -124,7 +124,7 @@ def data_injection():
     os.system("iptables -I OUTPUT -p tcp -j NFQUEUE --queue-num {}".format(QUEUE_NUM))
     queue = NetfilterQueue()
     try:
-        queue.bind(QUEUE_NUM, process_pkt)
+        queue.bind(QUEUE_NUM, process_packet)
         queue.run()
     except KeyboardInterrupt:
         os.system("iptables --flush && iptables -t nat -F")
