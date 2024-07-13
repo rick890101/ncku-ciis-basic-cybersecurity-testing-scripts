@@ -116,7 +116,7 @@ def process_packet(packet):
             pass
 
     except Exception as e:
-        console.log(f"Error: {e}")
+        # console.log(f"Error: {e}")
         packet.accept()
 
 def data_injection():
