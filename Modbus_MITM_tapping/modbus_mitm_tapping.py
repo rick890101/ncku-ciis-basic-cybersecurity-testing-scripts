@@ -53,7 +53,7 @@ def process_packet(packet):
         
         # 檢查是否為 Modbus/TCP 封包
         if z.haslayer(TCP):
-            console.log("Modbus/TCP Packet ...")
+            # console.log("Modbus/TCP Packet ...")
             func = z.payload.funcCode
             del z[TCP].chksum
             del z[IP].chksum
@@ -135,11 +135,11 @@ def data_injection():
 
 if __name__ == '__main__':
     # get_ip()
-    if( Prompt.ask("START MODBUS_MITM? [y/n]", default='unknown') == 'y'):
+    if( Prompt.ask("START MODBUS_MITM?(y/n/?)", default='unknown') == 'y'):
         arp_spoofing()
         data_injection()
     else:
         console.log("Exiting ...")
-        sleep(3)
+        sleep(1)
         exit(0)
         
